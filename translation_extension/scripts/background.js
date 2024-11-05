@@ -22,16 +22,6 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 console.log("Active tab:", tabs);
 
-                if (chrome.runtime.lastError) {
-                    console.error("Error querying tabs:", chrome.runtime.lastError.message);
-                    return;
-                }
-
-                if (tabs.length === 0) {
-                    console.error("No active tab found.");
-                    return; // Handle the case when there is no active tab
-                }
-
                 // Call your translation function here
                 translateText(info.selectionText)
                     .then(translatedText => {
