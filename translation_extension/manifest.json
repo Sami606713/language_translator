@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Your Extension Name",
+  "version": "1.0",
+  "permissions": ["contextMenus", "storage", "scripting", 
+      "activeTab","tabs"],
+  "background": {
+      "service_worker": "scripts/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"], 
+      "js": ["scripts/content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/clound.jpg",
+      "48": "assets/clound.jpg",
+      "128": "assets/clound.jpg"
+    }
+  },
+  "icons": {
+    "16": "assets/clound.jpg",
+    "48": "assets/clound.jpg",
+    "128": "assets/clound.jpg"
+  }
+}
