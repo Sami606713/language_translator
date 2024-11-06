@@ -28,7 +28,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
                         console.log("Translated text:", translatedText);
                         chrome.storage.local.set({ "translatedText": translatedText }); // Save the translated text to storage
                         
-                        console.log("Executing ...");
+                        console.log("Executing content.js ...");
 
                         chrome.scripting.executeScript({
                             target: { tabId: tab.id },
@@ -47,8 +47,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
 // Function to translate text using an external API
 async function translateText(text) {
-    const apiKey = 'YOUR_API_KEY'; // Replace with your API key
-    const targetLanguage = 'es'; // Change this to the desired target language
+    const targetLanguage = 'german'; // Change this to the desired target language
 
     // Example using fetch to call the translation API
     const response = await fetch(`http://127.0.0.1:8000/translate`, {
@@ -58,7 +57,7 @@ async function translateText(text) {
         },
         body: JSON.stringify({
             "text": text,
-            "dest_language": "Urdu"
+            "dest_language": targetLanguage
         })
     });
 
