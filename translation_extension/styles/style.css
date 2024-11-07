@@ -1,0 +1,83 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Global Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f4f7fc;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+/* Header Section */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 36px;
+    color: #4CAF50;
+}
+
+header p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Language Selector Section */
+.language-selector {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.language-selector label {
+    font-size: 18px;
+    color: #333;
+    margin-right: 10px;
+}
+
+.language-selector select {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #4CAF50;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.language-selector button {
+    padding: 10px 20px;
+    margin: 20px 0;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.language-selector button:hover {
+    background-color: #f86706;
+}
+
+/* Footer Section */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #777;
+    font-size: 14px;
+}

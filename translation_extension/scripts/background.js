@@ -47,25 +47,39 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
 // Function to translate text using an external API
 async function translateText(text) {
-    const targetLanguage = 'german'; // Change this to the desired target language
-
-    // Example using fetch to call the translation API
-    const response = await fetch(`http://127.0.0.1:8000/translate`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "text": text,
-            "dest_language": targetLanguage
-        })
+    // Always retrieve the latest target language from Chrome storage
+    const targetLanguage = await new Promise((resolve, reject) => {
+        chrome.storage.sync.get("selectedLanguage", (data) => {
+            if (chrome.runtime.lastError) {
+                reject(chrome.runtime.lastError);
+            } else {
+                console.log("Retrieved selected language:", data.selectedLanguage);
+                resolve(data.selectedLanguage); // Default to 'en' if no language is set
+            }
+        });
     });
 
-    if (!response.ok) {
-        throw new Error('Failed to fetch translation: ' + response.statusText);
+    try {
+        // Make the translation API call using the latest target language
+        const response = await fetch(`http://127.0.0.1:8000/translate`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "text": text,
+                "dest_language": targetLanguage
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch translation: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        return data["translated_text"];
+    } catch (error) {
+        console.error("Translation failed:", error);
+        throw error;
     }
-
-    const data = await response.json();
-
-    return data["translated_text"];
 }

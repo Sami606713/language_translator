@@ -4,13 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Translator</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <h1>Text Translator</h1>
-    
-    <div id="selectedText"></div>
-    <div id="translationResult"></div>
+    <div class="container">
+        <header>
+            <h1>Text Translator</h1>
+            <p>Select a language to start translating your text in your lovely language.</p>
+        </header>
+
+        <section class="language-selector">
+            <label for="languageSelect">Choose a language:</label>
+            <select id="languageSelect">
+                <option value="english">English</option>
+                <option value="spanish">Spanish</option>
+                <option value="french">French</option>
+                <option value="german">German</option>
+                <option value="chinese">Chinese</option>
+                <option value="japanese">Japanese</option>
+                <option value="korean">Korean</option>
+                <option value="hindi">Hindi</option>
+                <option value="russian">Russian</option>
+                <option value="urdu">Urdu</option>
+                <option value="arabic">Arabic</option>
+                <option value="portuguese">Portuguese</option>
+                <option value="italian">Italian</option>
+                <option value="dutch">Dutch</option>
+                <option value="swedish">Swedish</option>
+                <option value="turkish">Turkish</option>
+                <option value="polish">Polish</option>
+                <option value="thai">Thai</option>
+                <option value="vietnamese">Vietnamese</option>
+                <option value="greek">Greek</option>
+                <option value="hebrew">Hebrew</option>
+                <option value="indonesian">Indonesian</option>
+                <option value="malay">Malay</option>
+                <option value="bengali">Bengali</option>
+                <option value="tamil">Tamil</option>
+                <option value="telugu">Telugu</option>
+                <option value="punjabi">Punjabi</option>
+                <option value="marathi">Marathi</option>
+                <option value="swahili">Swahili</option>
+                <option value="swedish">Swedish</option>
+                <option value="ukrainian">Ukrainian</option>
+                <option value="belarusian">Belarusian</option>
+                <option value="czech">Czech</option>
+                <option value="hungarian">Hungarian</option>
+                <option value="romanian">Romanian</option>
+                <option value="bulgarian">Bulgarian</option>
+                <option value="serbian">Serbian</option>
+                <option value="croatian">Croatian</option>
+                <option value="bosnian">Bosnian</option>
+                <option value="slovak">Slovak</option>
+                <option value="slovenian">Slovenian</option>
+                <option value="malayalam">Malayalam</option>
+                <option value="gujarati">Gujarati</option>
+                <option value="nepali">Nepali</option>
+                <option value="kannada">Kannada</option>
+                <option value="sinhala">Sinhala</option>
+                <option value="finnish">Finnish</option>
+                <option value="norwegian">Norwegian</option>
+                <option value="danish">Danish</option>
+                <option value="icelandic">Icelandic</option>
+                <option value="estonian">Estonian</option>
+                <option value="latvian">Latvian</option>
+                <option value="lithuanian">Lithuanian</option>
+                <option value="basque">Basque</option>
+                <option value="catalan">Catalan</option>
+                <option value="afrikaans">Afrikaans</option>
+            </select>
+            <button id="saveLanguageBtn">Save Language</button>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Text Translator. All Rights Reserved.</p>
+        </footer>
+    </div>
+
     <script src="scripts/popup.js"></script>
     <script src="scripts/background.js"></script>
     <script src="scripts/content.js"></script>

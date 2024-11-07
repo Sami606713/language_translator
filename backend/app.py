@@ -20,8 +20,12 @@ async def translate_text(request: TranslationRequest):
         text=request.text
         target_language=request.dest_language
 
+        print("Text: ",text)
+        print("Target Language: ",target_language)
+
         translation=Language_Translation(text=text,target_language=target_language)
         response=translation.translate()
+        print("Response: ",response)
 
         if translation:
             return {    "original_text": text,

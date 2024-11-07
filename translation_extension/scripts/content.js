@@ -1,5 +1,3 @@
-console.log("Content script loaded.");
-
 // Listen for the message to retrieve and display the translated text
 chrome.storage.local.get("translatedText", (result) => {
     if (chrome.runtime.lastError) {
@@ -29,47 +27,67 @@ function displayTranslationAboveSelection(text) {
         popup.innerText = text;
         popup.style.position = "absolute";
         popup.style.left = `${rect.left + window.scrollX}px`;
-        popup.style.top = `${rect.top + window.scrollY - 30}px`; // 30px above the selected text
-        popup.style.padding = "10px";
-        popup.style.boxShadow = "0px 4px 8px rgba(0, 0, 0, 0.2)";
+        popup.style.top = `${rect.top + window.scrollY - 50}px`; // 50px above the selected text
+        popup.style.padding = "15px 20px";
+        popup.style.boxShadow = "0px 6px 18px rgba(0, 0, 0, 0.3)";
         popup.style.zIndex = "10000";
-        popup.style.maxWidth = "300px";
+        popup.style.maxWidth = "350px";
         popup.style.wordWrap = "break-word";
-        popup.style.borderRadius = "8px";
-        popup.style.fontSize = "14px";
+        popup.style.borderRadius = "12px";
+        popup.style.fontSize = "16px";
+        popup.style.lineHeight = "1.5";
+        popup.style.transition = "opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease";
+        popup.style.opacity = "0";
+        popup.style.transform = "translateY(-15px)";
         
-        // Determine theme based on system's color scheme preference
+        // Theme styling based on system's color scheme preference
         const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (isDarkMode) {
-            popup.style.background = "#333";
+            popup.style.backgroundColor = "#222";
             popup.style.color = "#fff";
-            popup.style.border = "1px solid #555";
+            popup.style.border = "1px solid #444";
         } else {
-            popup.style.background = "#fff";
-            popup.style.color = "#000";
-            popup.style.border = "1px solid #ccc";
+            popup.style.backgroundColor = "#fff";
+            popup.style.color = "#333";
+            popup.style.border = "1px solid #ddd";
         }
 
-        // Add a close button to the top right corner of the popup
-        const closeButton = document.createElement("button");
-        closeButton.innerText = "X";
+        // Add a close button with a stylish hover effect
+        const closeButton = document.createElement("span");
+        closeButton.innerHTML = "&times;";
         closeButton.style.position = "absolute";
-        closeButton.style.top = "5px";
-        closeButton.style.right = "5px";
-        closeButton.style.background = "red";
-        closeButton.style.border = "none";
-        closeButton.style.color = isDarkMode ? "#fff" : "#333";
-        closeButton.style.fontSize = "16px";
+        closeButton.style.top = "10px";
+        closeButton.style.right = "12px";
+        closeButton.style.color = isDarkMode ? "#ccc" : "#555";
         closeButton.style.cursor = "pointer";
+        closeButton.style.fontSize = "20px";
+        closeButton.style.fontWeight = "bold";
+        closeButton.style.transition = "color 0.3s ease";
+
+        // Change close button color on hover
+        closeButton.addEventListener("mouseover", () => {
+            closeButton.style.color = isDarkMode ? "#fff" : "#000";
+        });
+        closeButton.addEventListener("mouseout", () => {
+            closeButton.style.color = isDarkMode ? "#ccc" : "#555";
+        });
 
         // Close the popup when the close button is clicked
         closeButton.addEventListener("click", () => {
-            document.body.removeChild(popup);
+            popup.style.opacity = "0";
+            popup.style.transform = "translateY(-15px)";
+            setTimeout(() => document.body.removeChild(popup), 300); // Wait for animation to complete
         });
 
         // Append the close button and the popup to the document
         popup.appendChild(closeButton);
         document.body.appendChild(popup);
+
+        // Trigger the transition effect
+        setTimeout(() => {
+            popup.style.opacity = "1";
+            popup.style.transform = "translateY(0)";
+        }, 10);
 
         // Adjust popup position if it overflows the viewport
         const popupRect = popup.getBoundingClientRect();
@@ -77,7 +95,7 @@ function displayTranslationAboveSelection(text) {
             popup.style.left = `${window.innerWidth - popupRect.width - 20}px`;
         }
         if (popupRect.top < 0) {
-            popup.style.top = `${rect.bottom + window.scrollY + 5}px`; // position below the selection if overflow
+            popup.style.top = `${rect.bottom + window.scrollY + 10}px`; // position below the selection if overflow
         }
     }
 }
