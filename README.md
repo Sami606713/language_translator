@@ -2,6 +2,15 @@
 
 This project is a comprehensive language translation tool that allows users to translate any selected text into their desired language. The extension integrates seamlessly as a Chrome extension, providing easy and accessible multilingual translation capabilities.
 
+![Extension Screenshot](images/trans.jpg)
+---
+
+## UI Screenshots
+
+| UI Overview                     | Input Text Example           | Translated Text Example      |
+|----------------------------------|------------------------------|------------------------------|
+| ![UI Overview](images/extension_ui.PNG) | ![Input Text](images/input_text.PNG) | ![Translated Text](images/translated_text.PNG) |
+
 ---
 
 ## Folder Structure
@@ -21,6 +30,9 @@ This project is a comprehensive language translation tool that allows users to t
   - **popup.html** - Defines the main HTML structure of the extension's pop-up.
   - **manifest.json** - Configuration file for Chrome extension settings.
 
+### Images
+- This folder contain the all the necessary images.
+
 ---
 
 ## Features
@@ -35,11 +47,3 @@ This project is a comprehensive language translation tool that allows users to t
   Efficient API and utility functions for translation with a responsive front-end experience.
 
 ---
-
-## Adding Images
-
-To enhance your documentation, you may add screenshots or images in relevant sections here. To include images, upload them to the **assets** folder in the frontend, and then reference them in this README.
-
-Example:
-```markdown
-![Extension Screenshot](frontend/assets/extension_screenshot.png)
