@@ -5,14 +5,14 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copy requirements file
-COPY backend/requirements.txt .
+COPY requirements.txt .
 
 # Install dependencies
-RUN pip install -r backend/requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy application files
-COPY backend/app.py .
-COPY backend/utils.py .
+COPY app.py .
+COPY utils.py .
 
 # Expose the port (optional, for documentation)
 EXPOSE 8000
