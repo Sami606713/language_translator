@@ -8,7 +8,7 @@ WORKDIR /app
 COPY backend/requirements.txt .
 
 # Install dependencies
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt && rm -rf /root/.cache/pip
 
 # Copy application files
 COPY backend/app.py .
