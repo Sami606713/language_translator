@@ -8,7 +8,10 @@ WORKDIR /app
 COPY backend/requirements.txt .
 
 # Install dependencies
-RUN pip install -r requirements.txt && rm -rf /root/.cache/pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+#  Remove unnecessary caches after installing dependencies to keep the image clean.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy application files
 COPY backend/app.py .
