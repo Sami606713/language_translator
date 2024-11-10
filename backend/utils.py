@@ -3,45 +3,9 @@ from langchain_core.prompts import PromptTemplate
 from langchain.chains import LLMChain
 import os
 from dotenv import load_dotenv
-#========================================================================================#
-
-# -------------------------------Load Environment Variable-------------------------------#
 load_dotenv()
-g_api=os.environ["GROQ_API_KEY"]
-
-
-# set the llm
-llm = ChatGroq(
-    model="mixtral-8x7b-32768",
-    temperature=0.0,
-    max_retries=2,
-    api_key=g_api,
-)
-
-# make a prompt template for the model for langauage translation
-prompt = PromptTemplate(
-    template="""You are a skilled language translation expert.
-    Please translate the given text directly into {target_language} and provide only the translated text as output, without including the original text.
-
-    Input Text: "{input_text}"
-    Translation:""",
-    input_variables=["target_language", "input_text"],
-)
-# Example usage of the prompt with values for the variables
-# print(prompt.format(source_language="English", target_language="Urdu", input_text="Hello, how are you?"))
-
-
-# Now Make a chain of the prompt and the llm
-# chain=prompt | llm
-
-# response=chain.invoke({
-#     "target_language": "English",
-#     "input_text": "당신은 무슨 일을 하고 있나요?"
-# })
-# print(response.content)
-
-
-
+#========================================================================================#
+# This is the main class for language translation
 class Language_Translation:
     def __init__(self,text,target_language) -> None:
         self.text=text
