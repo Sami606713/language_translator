@@ -1,6 +1,6 @@
 langchain
 langchain_community
 python-dotenv
-langchain-huggingface
+langchain_groq
 fastapi
 uvicorn
