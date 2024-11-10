@@ -47,3 +47,7 @@ This project is a comprehensive language translation tool that allows users to t
   Efficient API and utility functions for translation with a responsive front-end experience.
 
 ---
+
+### Deployment
+  - After building the language translation backend api and extension we can deploy them on `aws` so that we can access our api from anywhere.
+  - My extensuion will be able to translate the text into multiple language as you want.

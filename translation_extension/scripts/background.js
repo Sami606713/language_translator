@@ -61,7 +61,7 @@ async function translateText(text) {
 
     try {
         // Make the translation API call using the latest target language
-        const response = await fetch(`http://127.0.0.1:8000/translate`, {
+        const response = await fetch(`http://ec2-13-60-54-210.eu-north-1.compute.amazonaws.com/translate`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
