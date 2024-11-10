@@ -4,3 +4,4 @@ python-dotenv
 langchain_groq
 fastapi
 uvicorn
+awscli

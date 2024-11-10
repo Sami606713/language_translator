@@ -38,6 +38,16 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r backend/requirements.txt
+      
+      - name: Check AWS Credential
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set region us-east-1  # Update this to your preferred region
+          aws sts get-caller-identity  # Verifies the identity
 
   # Job for building and pushing Docker image
   docker:
@@ -65,3 +75,21 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/language_translator:latest
+
+  deployment_job:
+    needs: docker_job  # This ensures this job runs only after 'docker_job' is successful
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/language_translator:latest
+            docker stop my-app || true
+            docker rm my-app || true
+            docker run -d -p 80:8000 --name my-app \
+              -e DAGSHUB_TOKEN=${{ secrets.DAGSHUB_TOKEN }} \
+              ${{ secrets.DOCKER_USERNAME }}/language_translator:latest
